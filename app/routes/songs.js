@@ -1,13 +1,11 @@
 import Route from '@ember/routing/route';
 import EmberObject from '@ember/object';
-import {A} from '@ember/array';
 
 let Song = EmberObject.extend({
     title: '',
     band: '',
     rating: 0
 });
-
 export default Route.extend({
     model() {
         let blackDog = Song.create({
@@ -25,6 +23,6 @@ export default Route.extend({
             band: 'Foo Fighters',
             rating: 2
         });
-        return A([blackDog, yellowLedbetter, pretender]);
+        return [blackDog, yellowLedbetter, pretender];
     }
 });
