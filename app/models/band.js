@@ -3,7 +3,7 @@ import {dasherize} from '@ember/string';
 
 export default EmberObject.extend({
     name: '',
-
+    description: '',
     songs: [],
 
     init() {
