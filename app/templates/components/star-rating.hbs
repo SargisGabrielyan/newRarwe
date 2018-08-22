@@ -1,13 +1,13 @@
-{{!-- {{#if hasBlock}}
+{{#if hasBlock}}
     {{yield stars}}
-{{else}} --}}
+{{else}}
     {{#each stars as |star|}}
-        <span class="rating-star" onclick={{action "setRating" star.rating}}>
+        <a class="rating-star" onclick={{action "setRating" star.rating}} data-test-rr={{concat "star-rating-" star.rating}}>
             {{#if star.isFull}}
                 {{fa-icon 'star'}}
             {{else}}
                 {{fa-icon 'star-o'}}
             {{/if}}
-        </span> 
+        </a> 
     {{/each}}
-{{!-- {{/if}} --}}
+{{/if}}
