@@ -180,7 +180,7 @@ a {
     text-align: center;
 }
 .rr-spinner {
-    background: url("/images/spinner.svg") no-repeat;
+    /* background: url("/images/spinner.svg") no-repeat; */
     height: 31px;
     width: 31px;
     margin: 0 auto;

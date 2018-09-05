@@ -6,7 +6,7 @@ export default Route.extend({
             this.transitionTo('bands.band.details');
         }
         else {
-            this.transitionTo('bands.band.songs');
+            this.transitionTo('bands.band.controls.songs');
         }
     }
 });
