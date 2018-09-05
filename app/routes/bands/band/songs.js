@@ -1,9 +1,14 @@
 import Route from '@ember/routing/route';
+import wait from 'new-rarwe/utils/wait';
 
 export default Route.extend({
-    model: function() {
-        return this.modelFor('bands.band');
-    },
+    // async model() {
+    //     await wait(3000);
+    //     return this.modelFor('bands.band');
+    // },
+    // model: function() {
+    //     return this.modelFor('bands.band');
+    // },
     resetController(controller) {
         controller.setProperties({
             isAddingSong: false,
