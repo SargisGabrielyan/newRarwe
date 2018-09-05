@@ -42,6 +42,7 @@ module('Acceptance | Bands', function(hooks) {
     assert.dom('[data-test-rr=song-list-item]:last-child').hasText('Elephants', 'The last song is the one that comes first in the alphabet');
     await click('[data-test-rr=sort-by-title-asc]');
     assert.equal(currentURL(), '/bands/1/songs?sort=titleAsc');
+    assert.dom('[data-test-rr=song-list-item]:last-child').hasText('Spinning In Daffodils', 'The last song is the one that comes last in the alphabet');
     await click('[data-test-rr=sort-by-rating-asc]');
     assert.equal(currentURL(), '/bands/1/songs?sort=ratingAsc');
   });
