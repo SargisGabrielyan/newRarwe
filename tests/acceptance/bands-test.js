@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { visit, pauseTest, click, fillIn, currentURL } from '@ember/test-helpers';
-import { createBand } from 'new-rarwe/tests/helpers/custom-helpers';
+import {  loginAs, createBand } from 'new-rarwe/tests/helpers/custom-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import setupMirageTest from 'ember-cli-mirage/test-support/setup-mirage';
 
@@ -11,6 +11,7 @@ module('Acceptance | Bands', function(hooks) {
   test('List bands', async function(assert) {
     this.server.create('band', { name: 'Radiohead' });
     this.server.create('band', { name: 'Long Distance Calling' });
+    await loginAs('dave@tcv.com');
     await visit('/');
     assert.dom('[data-test-rr=band-link]').exists({ count: 2 }, 'Allband links are rendered');
     assert.dom('[data-test-rr=band-list-item]:first-child').hasText("Radiohead", 'The first band link contains the band name');
@@ -18,6 +19,7 @@ module('Acceptance | Bands', function(hooks) {
   });
   test('Create a band', async function(assert) {
     this.server.create('band', { name: 'Royal Blood' });
+    await loginAs('dave@tcv.com');    /*my changes*/
     await visit('/');
     await createBand('Caspian');
     await pauseTest();
@@ -31,6 +33,7 @@ module('Acceptance | Bands', function(hooks) {
     this.server.create('song', { title: 'New Fang', rating: 4, band });
     this.server.create('song', { title: 'Mind Eraser, No Chaser', rating: 4, band });
     this.server.create('song', { title: 'Spinning in Daffodils', rating: 5, band });
+    await loginAs('dave@tcv.com');    /*my changes*/
     await visit('/');
     await click('[data-test-rr=band-link]');
     assert.equal(currentURL(), '/bands/1/songs');
@@ -46,6 +49,12 @@ module('Acceptance | Bands', function(hooks) {
     await click('[data-test-rr=sort-by-rating-asc]');
     assert.equal(currentURL(), '/bands/1/songs?sort=ratingAsc');
   });
+  test('Visit landing page without signing in', async function(assert){
+    await loginAs('dave@tcv.com');    /*my changes*/
+    await visit('/');
+    assert.dom('[data-test-rr=form-header]').hasText('Log in to R&R');
+    assert.dom('[data-test-rr=user-email]').doesNotExist();
+  });
   test('Search songs', async function(assert) {
     let band = this.server.create('band', { name: 'Them Crooked Vultures' });
     this.server.create('song', { title: 'Elephants', rating: 5, band });
@@ -53,6 +62,7 @@ module('Acceptance | Bands', function(hooks) {
     this.server.create('song', { title: 'Mind Eraser, No Chaser', rating: 4, band });
     this.server.create('song', { title: 'Spinning in Daffodils', rating: 5, band });
     this.server.create('song', { title: 'No One Loves Me & Neither Do I', rating: 5, band });
+    await loginAs('dave@tcv.com');    /*my changes*/
     await visit('/');
     await click('[data-test-rr=band-link]');
     await fillIn('[data-test-rr=search-box]', 'no');
