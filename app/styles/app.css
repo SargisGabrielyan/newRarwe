@@ -236,4 +236,19 @@ a {
     display: flex;
     justify-content: center;
 }
-
+.rr-inline-form-row {
+    margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.rr-cancel-icon-left {
+    align-self: center;
+    margin-right: 0.25rem;
+}
+.rr-form-field-error {
+    width: 100%;
+    margin: 0.25em 0;
+    color: var(--error-color);
+}
