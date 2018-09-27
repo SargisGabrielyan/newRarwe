@@ -20,8 +20,6 @@ export default Controller.extend({
                 await this.transitionToRoute('login');
             } catch(response) {
                 let errorMessage = extractServerError(response.errors);
-                // this.set('_showErrors', errorMessage);
-                // return this._showErrors;
                 this.baseErrors.pushObject(errorMessage);
             }
         }
