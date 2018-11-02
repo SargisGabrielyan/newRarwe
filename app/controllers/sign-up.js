@@ -19,8 +19,12 @@ export default Controller.extend({
                 await this.model.save();
                 await this.transitionToRoute('login');
             } catch(response) {
-                let errorMessage = extractServerError(response.errors);
-                this.baseErrors.pushObject(errorMessage);
+                let error = response.errors[0];
+                if (error.status !== "422") {
+                    throw response;
+                }
+                // let errorMessage = extractServerError(response.errors);
+                // this.baseErrors.pushObject(errorMessage);
             }
         }
     }
